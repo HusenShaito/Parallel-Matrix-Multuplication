@@ -4,7 +4,7 @@
 #include <time.h>
 
 #define M 1000
-#define N 1000
+#define N 1200
 #define K 1000
 
 #define NUM_THREADS 4
@@ -61,7 +61,7 @@ int main() {
     for (i = 0; i < NUM_THREADS; i++) {
         pthread_join(threads[i], &status);
     }
-    printf("elapsed time in nearest second is: %.2f\n", (double)(time(NULL)-start));
+    printf("PThreds: elapsed time in nearest second is: %.2f\n", (double)(time(NULL)-start));
 
     return 0;
 }
