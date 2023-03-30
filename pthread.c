@@ -11,10 +11,9 @@
 
 double A[M][N], B[N][K], C[M][K];
 pthread_t threads[NUM_THREADS];
-int thread_args[NUM_THREADS];
 
-void *matrix_mult(void *thread_arg) {
-    int tid = *((int*) thread_arg);
+void *matrix_mult(void* x) {
+    int tid = *((int*) x);
     int i, j, k;
     double sum;
     int chunk_size = M / NUM_THREADS;
@@ -53,8 +52,8 @@ int main() {
     time_t start = time(NULL);
     // Create threads and perform matrix multiplication in parallel
     for (i = 0; i < NUM_THREADS; i++) {
-        thread_args[i] = i;
-        pthread_create(&threads[i], NULL, matrix_mult, (void*) &thread_args[i]);
+        
+        pthread_create(&threads[i], NULL, matrix_mult, (void*) &i);
     }
 
     // Wait for all threads to finish
